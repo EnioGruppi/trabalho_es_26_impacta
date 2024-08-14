@@ -1,8 +1,8 @@
-import React from 'react'
-import { Alert, Button, FlatList, Text, View } from "react-native"
-import { NavigationProp, useNavigation } from '@react-navigation/native'
-import { userService } from '../../services/user.service'
-import UserView from '../../components/UserView'
+import React from 'react';
+import { Alert, Button, FlatList, Text, View, StyleSheet } from "react-native";
+import { NavigationProp, useNavigation } from '@react-navigation/native';
+import { userService } from '../../services/user.service';
+import UserView from '../../components/UserView';
 
 export default function HomePage() {
 
@@ -18,6 +18,7 @@ export default function HomePage() {
                 <>
                     <Button title="Add" onPress={goToUser} />
                 </>
+                
             )
         })
 
@@ -31,6 +32,8 @@ export default function HomePage() {
     function goToUser() {
         navigation.navigate('User')
     }
+
+
 
     async function fetchUser() {
         setRefreshing(true)
@@ -61,9 +64,37 @@ export default function HomePage() {
                 refreshing={refreshing}
                 onRefresh={fetchUser}
                 renderItem={({ item }) =>
-                    <UserView user={item} edit={editUser} remove={removeUser} />
+                    <UserView user={item} edit={editUser} remove={removeUser}    />
                 }
             />
+            <View style={styles.footer}>
+                <Button
+                    title="Adicionar Role"
+                    onPress={() => navigation.navigate('RoleForm')}
+                />
+                <Button
+                    title="Lista de Roles"
+                    onPress={() => navigation.navigate('RoleList')}
+                />
+               
+             
+            </View>
+            
         </View>
+        
     )
 }
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+    },
+    footer: {
+        flexDirection: 'row', 
+        justifyContent: 'space-between',
+        padding: 16,
+    },
+    button: {
+        marginHorizontal: 8,
+    },
+});

@@ -2,7 +2,7 @@ import { authRepository } from "./auth.repository"
 
 class UserService {
 
-    private readonly baseUrl = 'http://192.168.0.9:3030/users'
+    private readonly baseUrl = 'http://10.0.2.2:3030/users'
 
     private async getHeaders() {
         const logged = await authRepository.getLoggedUser()
@@ -46,13 +46,13 @@ class UserService {
         return null
     }
 
-    public async create(name: string, username: string, password: string) {
+    public async create(name: string, username: string, password: string, role: any) {
         const headers = await this.getHeaders()
         if (headers) {
             const response = await fetch(this.baseUrl, {
                 method: 'POST',
                 headers,
-                body: JSON.stringify({ name, username, password })
+                body: JSON.stringify({ name, username, password, role })
             })
 
             if (response.status === 400) return 'Usuário já existe'
@@ -62,13 +62,13 @@ class UserService {
         return null
     }
 
-    public async update(id: number, name: string) {
+    public async update(id: number, name: string, roles: any) {
         const headers = await this.getHeaders()
         if (headers) {
             const response = await fetch(`${this.baseUrl}/${id}`, {
                 method: 'PUT',
                 headers,
-                body: JSON.stringify({ name })
+                body: JSON.stringify({ name, roles })
             })
 
             if (response.status === 401) return null

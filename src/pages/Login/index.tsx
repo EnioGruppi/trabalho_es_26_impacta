@@ -22,6 +22,7 @@ export default function LoginPage() {
             }
         }).catch(error => {
             Alert.alert('Login/senha inválido(a) 2')
+            alert(error)
         })
     }
 

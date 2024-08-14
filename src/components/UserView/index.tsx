@@ -1,17 +1,18 @@
-import { Text, View } from "react-native"
-import { BorderlessButton, GestureHandlerRootView, Swipeable } from 'react-native-gesture-handler'
+import React from 'react';
+import { Text, View } from 'react-native';
+import { BorderlessButton, GestureHandlerRootView, Swipeable } from 'react-native-gesture-handler';
 
-import styles from './styles'
+import styles from './styles';
 
 type Props = {
-    user: any,
-    edit: (id: number) => void,
-    remove: (id: number) => void,
-}
+    user: any;
+    edit: (id: number) => void;
+    remove: (id: number) => void;
+};
 
 type DeleteProps = {
-    remove: () => void,
-}
+    remove: () => void;
+};
 
 function DeleteButton({ remove }: DeleteProps) {
     return (
@@ -20,18 +21,20 @@ function DeleteButton({ remove }: DeleteProps) {
                 <Text style={styles.deleteText}>DELETE</Text>
             </BorderlessButton>
         </View>
-    )
+    );
 }
 
 export default function UserView({ user, edit, remove }: Props) {
+    console.log('UserView props:', user); // Log user data
     return (
         <GestureHandlerRootView>
             <Swipeable renderRightActions={() => <DeleteButton remove={() => remove(user.id)} />}>
                 <View style={styles.container} onTouchEnd={() => edit(user.id)}>
                     <Text style={styles.title}>{user.name}</Text>
                     <Text style={styles.subTitle}>{user.username}</Text>
+                    <Text style={styles.subTitle}>{'Role(s): ' + user.roles}</Text>
                 </View>
             </Swipeable>
         </GestureHandlerRootView>
-    )
+    );
 }

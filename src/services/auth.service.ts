@@ -2,7 +2,7 @@ import { authRepository } from "./auth.repository"
 
 class AuthService {
 
-    private readonly baseUrl = 'http://192.168.0.9:3030/auth'
+    private readonly baseUrl = 'http://10.0.2.2:3030/auth'
 
     public async login(username: string, password: string) {
         const response = await fetch(`${this.baseUrl}/login`, {
