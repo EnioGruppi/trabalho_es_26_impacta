@@ -73,7 +73,6 @@ export default function UserPage() {
             return;
         }
 
-        console.log('Creating user with roles:', roles);
         userService.create(name, username, password, roles).then(result => {
             if (result) {
                 setName('');
@@ -94,7 +93,6 @@ export default function UserPage() {
             return;
         }
 
-        console.log('Updating user with roles:', roles);
         userService.update(id, name, roles).then(result => {
             if (result) {
                 setName('');

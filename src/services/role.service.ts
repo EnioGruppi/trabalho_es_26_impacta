@@ -23,13 +23,13 @@ class RolesService {
         try {
           const response = await axios.get(this.baseUrl, { headers });
           if (response.status.toString().startsWith("2")) {
-            return response.data; // Assuming response.data is the array of roles
+            return response.data; 
           } else {
             throw new Error('Falha ao buscar papéis.');
           }
         } catch (error) {
           console.error('Erro ao buscar papéis:', error);
-          throw error; // Re-throw the error to be caught in the component
+          throw error; 
         }
       }
     

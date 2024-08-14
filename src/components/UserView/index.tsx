@@ -25,7 +25,6 @@ function DeleteButton({ remove }: DeleteProps) {
 }
 
 export default function UserView({ user, edit, remove }: Props) {
-    console.log('UserView props:', user); // Log user data
     return (
         <GestureHandlerRootView>
             <Swipeable renderRightActions={() => <DeleteButton remove={() => remove(user.id)} />}>
